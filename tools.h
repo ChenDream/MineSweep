@@ -8,6 +8,7 @@ class Tools
 public:
     Tools();
     static Matrix GenerateMap(int width,int length,int mines);
+    static void PrintMap(const Matrix& matrix);
 };
 
 #endif // TOOLS_H
