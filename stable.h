@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QtGui>
 #include <vector>
-
-
+#include <memory>
+#include <utility>
+typedef std::vector<std::vector<int>> Matrix;
 #endif // STABLE_H

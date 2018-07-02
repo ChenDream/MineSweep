@@ -31,6 +31,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     tools.h \
-    stable.h
+    stable.h \
+    global.h
 
 FORMS    += mainwindow.ui

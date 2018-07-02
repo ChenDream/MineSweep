@@ -3,10 +3,7 @@
 #include <random>
 #include <chrono>
 #include <iostream>
-Tools::Tools()
-{
-
-}
+#include "global.h"
 /**
  * @brief Tools::GenerateMap
  * generate a 2d int vector to store mines.
@@ -18,7 +15,7 @@ Tools::Tools()
  * @param mines
  * @return
  */
-Matrix Tools::GenerateMap(int width, int length, int mines){
+void Tools::GenerateMap(int width, int length, int mines){
     int total = width*length;
     std::vector<int> lst;
     for(int i=0;i<total;i++){
@@ -29,14 +26,14 @@ Matrix Tools::GenerateMap(int width, int length, int mines){
     std::shuffle(lst.begin(),lst.end(),std::default_random_engine(seed));
 
     Matrix x(length,std::vector<int>(width,0));
-
+    Matrix checkX(length,std::vector<int>(width,0));
     if(mines>total) mines = total;
     for(int i=0;i<mines;i++){
         int num = lst.at(i);
         int l = num/width;
         int w = num%width;
         x[l][w] = -1;
-
+        checkX[l][w] = -1;
         //top
         if((l-1)>=0){
             //top middle
@@ -73,13 +70,14 @@ Matrix Tools::GenerateMap(int width, int length, int mines){
         }
     }
 
-    PrintMap(x);
-    return x;
+    Global::getInstance().map = x;
+    Global::getInstance().check_map = checkX;
 }
 void Tools::PrintMap(const Matrix &matrix){
     if(matrix.empty()) return;
     auto length = matrix.size();
     auto width = matrix[0].size();
+    std::cout<<"--------------"<<std::endl;
     for(int i=0;i<length;i++){
         std::string str;
         for(int j=0;j<width;j++){
@@ -89,4 +87,5 @@ void Tools::PrintMap(const Matrix &matrix){
         }
         std::cout<<str<<std::endl;
     }
+    std::cout<<"--------------"<<std::endl;
 }

@@ -2,13 +2,17 @@
 #define TOOLS_H
 
 #include <stable.h>
-typedef std::vector<std::vector<int>> Matrix;
+
+struct Result{
+    bool isMine;
+    std::vector<std::pair<int,int>> path;
+};
 class Tools
 {
 public:
-    Tools();
-    static Matrix GenerateMap(int width,int length,int mines);
+    static void GenerateMap(int width,int length,int mines);
     static void PrintMap(const Matrix& matrix);
+    static
 };
 
 #endif // TOOLS_H
