@@ -10,6 +10,8 @@ public:
     }
     Matrix map;          //mines map
     Matrix check_map;     //checked mines map -1 resprent mines 0 resprent uncheck,1 resprent check
+    int width;
+    int length;
 private:
     Global(){}
     ~Global(){}

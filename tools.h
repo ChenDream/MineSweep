@@ -4,7 +4,7 @@
 #include <stable.h>
 
 struct Result{
-    bool isMine;
+    bool isMine = false;
     std::vector<std::pair<int,int>> path;
 };
 class Tools
@@ -12,7 +12,7 @@ class Tools
 public:
     static void GenerateMap(int width,int length,int mines);
     static void PrintMap(const Matrix& matrix);
-    static
+    static Result Click(int x,int y);
 };
 
 #endif // TOOLS_H

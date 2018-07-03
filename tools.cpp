@@ -72,6 +72,23 @@ void Tools::GenerateMap(int width, int length, int mines){
 
     Global::getInstance().map = x;
     Global::getInstance().check_map = checkX;
+    Global::getInstance().width = width;
+    Global::getInstance().length = length;
+}
+std::vector<std::pair<int,int>> checkNext(int x,int y,std::vector<std::pair<int,int>> path){
+
+    return path;
+}
+Result Tools::Click(int x, int y){
+    Result result;
+    if(x<0||x>=Global::getInstance().width
+            ||y<0||y>=Global::getInstance().length) return result;
+    if(Global::getInstance().check_map[y][x] == -1){
+        result.isMine = true;
+        return result;
+    }
+
+    return result;
 }
 void Tools::PrintMap(const Matrix &matrix){
     if(matrix.empty()) return;
