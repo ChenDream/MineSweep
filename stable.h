@@ -7,5 +7,6 @@
 #include <vector>
 #include <memory>
 #include <utility>
+#include <QDebug>
 typedef std::vector<std::vector<int>> Matrix;
 #endif // STABLE_H

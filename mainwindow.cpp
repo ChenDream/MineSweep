@@ -18,5 +18,8 @@ void MainWindow::initData(){
     Tools::GenerateMap(9,9,10);
     Tools::PrintMap(Global::getInstance().map);
     Tools::PrintMap(Global::getInstance().check_map);
+    Tools::Click(0,0);
+    Tools::PrintMap(Global::getInstance().map);
+    Tools::PrintMap(Global::getInstance().check_map);
 
 }

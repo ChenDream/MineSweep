@@ -76,8 +76,41 @@ void Tools::GenerateMap(int width, int length, int mines){
     Global::getInstance().length = length;
 }
 std::vector<std::pair<int,int>> checkNext(int x,int y,std::vector<std::pair<int,int>> path){
-
+    if(Global::getInstance().map[y][x] == -1)return path;  // is mine
+    if(Global::getInstance().check_map[y][x] == 1)return path; //checked
+    Global::getInstance().check_map[y][x] = 1;
+    if(Global::getInstance().map[y][x] ==0){
+        if((y-1)>=0){
+            qDebug()<<x<<y-1;
+            path = checkNext(x,y-1,path);
+            if((x-1)>=0)
+                qDebug()<<x-1<<y-1;
+                path = checkNext(x-1,y-1,path);
+            if((x+1)<Global::getInstance().width)
+                qDebug()<<x+1<<y-1;
+                path = checkNext(x+1,y-1,path);
+        }
+        if((x-1)>=0)
+            qDebug()<<x-1<<y;
+            path = checkNext(x-1,y,path);
+        if((x+1)<Global::getInstance().width)
+            qDebug()<<x+1<<y;
+            path = checkNext(x+1,y,path);
+        if((y+1)<Global::getInstance().length){
+            qDebug()<<x<<y+1;
+            path = checkNext(x,y+1,path);
+            if((x-1)>=0)
+                qDebug()<<x-1<<y+1;
+                path = checkNext(x-1,y+1,path);
+            if((x+1)<Global::getInstance().width)
+                qDebug()<<x+1<<y+1;
+                path = checkNext(x+1,y+1,path);
+        }
+    }else{
+        path.push_back({y,x});
+    }
     return path;
+
 }
 Result Tools::Click(int x, int y){
     Result result;
@@ -87,7 +120,7 @@ Result Tools::Click(int x, int y){
         result.isMine = true;
         return result;
     }
-
+    checkNext(x,y,result.path);
     return result;
 }
 void Tools::PrintMap(const Matrix &matrix){
