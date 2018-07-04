@@ -13,14 +13,41 @@
   <property name="windowTitle">
    <string>Minesweeper</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="result">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>530</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>result</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="click">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>530</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>click</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

@@ -76,35 +76,50 @@ void Tools::GenerateMap(int width, int length, int mines){
     Global::getInstance().length = length;
 }
 std::vector<std::pair<int,int>> checkNext(int x,int y,std::vector<std::pair<int,int>> path){
-    if(Global::getInstance().map[y][x] == -1)return path;  // is mine
-    if(Global::getInstance().check_map[y][x] == 1)return path; //checked
+    qDebug()<<"reach point"<<y<<x;
+    if(Global::getInstance().map[y][x] == -1){
+        qDebug()<<"is Mine";
+        return path;
+    }  // is mine
+    if(Global::getInstance().check_map[y][x] == 1){
+        qDebug()<<"is Checked";
+        return path;
+    }//checked
     Global::getInstance().check_map[y][x] = 1;
-    if(Global::getInstance().map[y][x] ==0){
+    if(Global::getInstance().map[y][x] ==0){ // TODO:: bug need to fix!!!
         if((y-1)>=0){
-            qDebug()<<x<<y-1;
+            qDebug()<<"enter"<<y-1<<x;
             path = checkNext(x,y-1,path);
-            if((x-1)>=0)
-                qDebug()<<x-1<<y-1;
+            if((x-1)>=0){
+                qDebug()<<"enter"<<y-1<<x-1;
                 path = checkNext(x-1,y-1,path);
-            if((x+1)<Global::getInstance().width)
-                qDebug()<<x+1<<y-1;
+            }
+            if((x+1)<Global::getInstance().width){
+                qDebug()<<"enter"<<y-1<<x+1;
                 path = checkNext(x+1,y-1,path);
+            }
         }
-        if((x-1)>=0)
-            qDebug()<<x-1<<y;
+        if((x-1)>=0){
+            qDebug()<<"enter"<<y<<x-1;
             path = checkNext(x-1,y,path);
-        if((x+1)<Global::getInstance().width)
-            qDebug()<<x+1<<y;
+        }
+        if((x+1)<Global::getInstance().width){
+            qDebug()<<"enter"<<y<<x+1;
             path = checkNext(x+1,y,path);
+        }
+
+
         if((y+1)<Global::getInstance().length){
-            qDebug()<<x<<y+1;
+            qDebug()<<"enter"<<y+1<<x;
             path = checkNext(x,y+1,path);
-            if((x-1)>=0)
-                qDebug()<<x-1<<y+1;
+            if((x-1)>=0){
+                qDebug()<<"enter"<<y+1<<x-1;
                 path = checkNext(x-1,y+1,path);
-            if((x+1)<Global::getInstance().width)
-                qDebug()<<x+1<<y+1;
+            }
+            if((x+1)<Global::getInstance().width){
+                qDebug()<<"enter"<<y+1<<x+1;
                 path = checkNext(x+1,y+1,path);
+            }
         }
     }else{
         path.push_back({y,x});
