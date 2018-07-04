@@ -6,32 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>617</height>
+    <width>572</width>
+    <height>611</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Minesweeper</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="result">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>530</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>result</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="click">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>530</y>
+      <x>410</x>
+      <y>520</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -40,13 +27,24 @@
      <string>click</string>
     </property>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>40</y>
+      <width>450</width>
+      <height>450</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout"/>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>572</width>
      <height>23</height>
     </rect>
    </property>
