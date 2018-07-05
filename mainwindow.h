@@ -25,6 +25,7 @@ private:
     QList<QList<QPushButton*>> btnList;
     void initData();
     void initView();
+    void draw();
 };
 
 #endif // MAINWINDOW_H
