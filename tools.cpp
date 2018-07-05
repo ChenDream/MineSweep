@@ -75,69 +75,63 @@ void Tools::GenerateMap(int width, int length, int mines){
     Global::getInstance().width = width;
     Global::getInstance().length = length;
 }
-std::vector<std::pair<int,int>> checkNext(int x,int y,std::vector<std::pair<int,int>> path){
+void checkNext(int x,int y){
 //    qDebug()<<"reach point"<<y<<x;
     if(Global::getInstance().map[y][x] == -1){
 //        qDebug()<<"is Mine";
-        return path;
+        return ;
     }  // is mine
     if(Global::getInstance().check_map[y][x] == 1){
 //        qDebug()<<"is Checked";
-        return path;
+        return ;
     }//checked
     Global::getInstance().check_map[y][x] = 1;
     if(Global::getInstance().map[y][x] ==0){
         if((y-1)>=0){
 //            qDebug()<<"enter"<<y-1<<x;
-            path = checkNext(x,y-1,path);
+            checkNext(x,y-1);
             if((x-1)>=0){
 //                qDebug()<<"enter"<<y-1<<x-1;
-                path = checkNext(x-1,y-1,path);
+                checkNext(x-1,y-1);
             }
             if((x+1)<Global::getInstance().width){
 //                qDebug()<<"enter"<<y-1<<x+1;
-                path = checkNext(x+1,y-1,path);
+                checkNext(x+1,y-1);
             }
         }
         if((x-1)>=0){
 //            qDebug()<<"enter"<<y<<x-1;
-            path = checkNext(x-1,y,path);
+            checkNext(x-1,y);
         }
         if((x+1)<Global::getInstance().width){
 //            qDebug()<<"enter"<<y<<x+1;
-            path = checkNext(x+1,y,path);
+            checkNext(x+1,y);
         }
 
 
         if((y+1)<Global::getInstance().length){
 //            qDebug()<<"enter"<<y+1<<x;
-            path = checkNext(x,y+1,path);
+            checkNext(x,y+1);
             if((x-1)>=0){
 //                qDebug()<<"enter"<<y+1<<x-1;
-                path = checkNext(x-1,y+1,path);
+                checkNext(x-1,y+1);
             }
             if((x+1)<Global::getInstance().width){
 //                qDebug()<<"enter"<<y+1<<x+1;
-                path = checkNext(x+1,y+1,path);
+                checkNext(x+1,y+1);
             }
         }
-    }else{
-//        qDebug()<<"end at"<<y<<x;
-        path.push_back({y,x});
     }
-    return path;
 
 }
-Result Tools::Click(int x, int y){
-    Result result;
+bool Tools::Click(int x, int y){
     if(x<0||x>=Global::getInstance().width
-            ||y<0||y>=Global::getInstance().length) return result;
+            ||y<0||y>=Global::getInstance().length) return false;
     if(Global::getInstance().check_map[y][x] == -1){
-        result.isMine = true;
-        return result;
+        return true;
     }
-    checkNext(x,y,result.path);
-    return result;
+    checkNext(x,y);
+    return false;
 }
 void Tools::PrintMap(const Matrix &matrix){
     if(matrix.empty()) return;

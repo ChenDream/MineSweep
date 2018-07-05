@@ -12,7 +12,7 @@ class Tools
 public:
     static void GenerateMap(int width,int length,int mines);
     static void PrintMap(const Matrix& matrix);
-    static Result Click(int x,int y);
+    static bool Click(int x,int y);
 };
 
 #endif // TOOLS_H

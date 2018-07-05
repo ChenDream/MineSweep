@@ -22,15 +22,16 @@ void MainWindow::initView(){
 //    ui->gridLayout->setGeometry(QRect(10,10,len*9,len*9));
     ui->gridLayoutWidget->setGeometry(QRect(50,50,len*9,len*9));
     for(int i=0;i<9;i++){
-        QList<QPushButton*> tem;
+        QList<MyPushButton*> tem;
         for(int j=0;j<9;j++){
-            QPushButton *btn;
-            btn = new QPushButton(ui->gridLayoutWidget);
+            MyPushButton *btn;
+            btn = new MyPushButton(ui->gridLayoutWidget);
             QString name = QString::number(j)+"-"+QString::number(i);
             tem.append(btn);
             btn->setObjectName(name);
             btn->setFixedSize(btnSize);
-            connect(btn,SIGNAL(clicked()),this,SLOT(btn_receiver()));
+            connect(btn,SIGNAL(leftClick()),this,SLOT(btn_left_receiver()));
+            connect(btn,SIGNAL(rightClick()),this,SLOT(btn_right_receiver()));
             ui->gridLayout->addWidget(btn,i,j);
         }
         btnList.append(tem);
@@ -39,35 +40,38 @@ void MainWindow::initView(){
 
 void MainWindow::initData(){
     Tools::GenerateMap(9,9,10);
-//    Tools::PrintMap(Global::getInstance().map);
-//    Tools::PrintMap(Global::getInstance().check_map);
 }
 
-void MainWindow::on_click_clicked()
-{
-    auto result = Tools::Click(0,0);
-    auto lst = result.path;
-    if(!lst.empty()){
-        for(auto tem:lst){
-            qDebug()<<tem.first<<tem.second;
-        }
-    }
-}
-void MainWindow::btn_receiver(){
-    if(QPushButton* btn = qobject_cast<QPushButton *>(sender())){
+
+void MainWindow::btn_left_receiver(){
+    if(MyPushButton* btn = qobject_cast<MyPushButton *>(sender())){
         QStringList lst = btn->objectName().split("-");
         int x = lst.at(0).toInt();
         int y = lst.at(1).toInt();
-        auto result =  Tools::Click(x,y);
+        auto isMine =  Tools::Click(x,y);
+        this->draw(isMine);
     }
-
 }
-void MainWindow::draw(){
+void MainWindow::btn_right_receiver(){
+    QString style = "background-color: rgb(85, 255, 127);";
+    if(MyPushButton* btn = qobject_cast<MyPushButton *>(sender())){
+        btn->setStyleSheet(style);
+    }
+}
+
+void MainWindow::draw(bool isMine){
+     //type = -1 game over, find all mines
     int x = btnList.at(0).length();
     int y = btnList.length();
-    for(int i =0;i<x;i++){
-        for(int j=0;j<y;j++){
-
+    for(int i =0;i<y;i++){
+        for(int j=0;j<x;j++){
+            if(isMine && Global::getInstance().check_map[j][i] == -1){
+                btnList[j][i]->setText("-1");
+                btnList[j][i]->setEnabled(false);
+            }else if(Global::getInstance().check_map[j][i]==1){
+                btnList[j][i]->setText(QString::number(Global::getInstance().map[j][i]));
+                btnList[j][i]->setEnabled(false);
+            }
         }
     }
 }

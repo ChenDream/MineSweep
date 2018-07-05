@@ -14,19 +14,6 @@
    <string>Minesweeper</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="click">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>520</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>click</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>

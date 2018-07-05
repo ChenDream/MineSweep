@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "stable.h"
-#include <QPushButton>
+#include "mypushbutton.h"
 namespace Ui {
 class MainWindow;
 }
@@ -18,14 +18,14 @@ public:
 
 private slots:
 
-    void on_click_clicked();
-    void btn_receiver();
+    void btn_left_receiver();
+    void btn_right_receiver();
 private:
     Ui::MainWindow *ui;
-    QList<QList<QPushButton*>> btnList;
+    QList<QList<MyPushButton*>> btnList;
     void initData();
     void initView();
-    void draw();
+    void draw(bool isMine);
 };
 
 #endif // MAINWINDOW_H
