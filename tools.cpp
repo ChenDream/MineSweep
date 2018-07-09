@@ -133,6 +133,11 @@ bool Tools::Click(int x, int y){
     checkNext(x,y);
     return false;
 }
+/**
+ * @brief Tools::PrintMap
+ * @param matrix
+ * print maps for test
+ */
 void Tools::PrintMap(const Matrix &matrix){
     if(matrix.empty()) return;
     auto length = matrix.size();

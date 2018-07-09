@@ -13,3 +13,6 @@ void MyPushButton::mouseReleaseEvent(QMouseEvent *e){
         emit rightClick();
     }
 }
+void MyPushButton::mousePressEvent(QMouseEvent *e){
+
+}
