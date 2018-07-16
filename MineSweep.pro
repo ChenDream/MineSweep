@@ -37,3 +37,6 @@ HEADERS  += mainwindow.h \
     mypushbutton.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

@@ -53,9 +53,25 @@ void MainWindow::btn_left_receiver(){
     }
 }
 void MainWindow::btn_right_receiver(){
-    QString style = "background-color: rgb(85, 255, 127);";
+
+    QIcon flag;
+    QIcon question;
+    flag.addFile(QStringLiteral(":/resources/flag.png"), QSize(), QIcon::Normal, QIcon::Off);
+    question.addFile(QStringLiteral(":/resources/question.png"), QSize(), QIcon::Normal, QIcon::Off);
+
     if(MyPushButton* btn = qobject_cast<MyPushButton *>(sender())){
-        btn->setStyleSheet(style);
+
+        if(btn->icon().isNull()){
+
+            btn->setIcon(flag);
+
+        }/*else if(btn->icon()==flag){
+
+            btn->setIcon(question);
+        }else if(btn->icon()==question){
+
+            btn->setIcon(QIcon());
+        }*/
     }
 }
 
