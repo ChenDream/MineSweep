@@ -20,6 +20,7 @@ private slots:
 
     void btn_left_receiver();
     void btn_right_receiver();
+    void btn_both_receiver();
 private:
     Ui::MainWindow *ui;
     QList<QList<MyPushButton*>> btnList;
