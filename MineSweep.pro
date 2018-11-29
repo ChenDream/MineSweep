@@ -27,14 +27,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    tools.cpp \
-    mypushbutton.cpp
+    mypushbutton.cpp \
+    minealgorithm.cpp
 
 HEADERS  += mainwindow.h \
-    tools.h \
     stable.h \
     global.h \
-    mypushbutton.h
+    mypushbutton.h \
+    minealgorithm.h
 
 FORMS    += mainwindow.ui
 

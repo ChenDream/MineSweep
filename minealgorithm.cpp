@@ -1,11 +1,12 @@
-#include "tools.h"
 #include <algorithm>
 #include <random>
 #include <chrono>
 #include <iostream>
 #include "global.h"
+#include "minealgorithm.h"
+
 /**
- * @brief Tools::GenerateMap
+ * @brief MineAlgorithm::GenerateMap
  * generate a 2d int vector to store mines.
  * 0 resprest no mines, -1 represent mines.
  * 1 - 8 resprest number of mines around.
@@ -15,13 +16,15 @@
  * @param mines
  * @return
  */
-void Tools::GenerateMap(int width, int length, int mines){
+void MineAlgorithm::GenerateMap(int width, int length, int mines){
     int total = width*length;
     std::vector<int> lst;
     for(int i=0;i<total;i++){
         lst.push_back(i);
     }
-    //shuffle list
+    //shuffle list, list contain every index of matrix, shuffle list will
+    // let index sort in a random way, and the number of mines will appear
+    // on first number of index.
     auto seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(lst.begin(),lst.end(),std::default_random_engine(seed));
 
@@ -34,6 +37,7 @@ void Tools::GenerateMap(int width, int length, int mines){
         int w = num%width;
         x[l][w] = -1;
         checkX[l][w] = -1;
+        // add 1 to every mines around.
         //top
         if((l-1)>=0){
             //top middle
@@ -124,7 +128,7 @@ void checkNext(int x,int y){
     }
 
 }
-bool Tools::Click(int x, int y){
+bool MineAlgorithm::Click(int x, int y){
     if(x<0||x>=Global::getInstance().width
             ||y<0||y>=Global::getInstance().length) return false;
     if(Global::getInstance().check_map[y][x] == -1){
@@ -136,9 +140,9 @@ bool Tools::Click(int x, int y){
 /**
  * @brief Tools::PrintMap
  * @param matrix
- * print maps for test
+ * print maps for test only
  */
-void Tools::PrintMap(const Matrix &matrix){
+void MineAlgorithm::PrintMap(const Matrix &matrix){
     if(matrix.empty()) return;
     auto length = matrix.size();
     auto width = matrix[0].size();

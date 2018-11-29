@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "tools.h"
+#include "minealgorithm.h"
 #include "global.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,7 +41,7 @@ void MainWindow::initView(){
 }
 
 void MainWindow::initData(){
-    Tools::GenerateMap(9,9,10);
+    MineAlgorithm::GenerateMap(9,9,10);
 }
 
 void MainWindow::btn_both_receiver(){
@@ -58,7 +58,7 @@ void MainWindow::btn_left_receiver(){
         }
         int x = lst.at(0).toInt();
         int y = lst.at(1).toInt();
-        auto isMine =  Tools::Click(x,y);
+        auto isMine =  MineAlgorithm::Click(x,y);
         this->draw(isMine);
     }
 }
